@@ -1,28 +1,30 @@
 import React from 'react'
-import logo from './logo.svg'
-import { DatePicker } from 'antd'
-import './App.css'
+// import { inject, observer } from 'mobx-react'
+import { HashRouter as Router, Switch, Redirect, Route } from 'react-router-dom'
 
-function App() {
-  return (
-    <div className="App">
-      <DatePicker />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  )
+import Login from './pages/login'
+import Home from './pages/home'
+
+// @inject('userStore')
+// @observer
+class App extends React.Component {
+  render() {
+    // const { user } = this.props.userStore
+    // console.log(user.name)
+    return (
+      <Router>
+        <Switch>
+          <Redirect exact from="/" to="/login" />
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/home">
+            <Home />
+          </Route>
+        </Switch>
+      </Router>
+    )
+  }
 }
 
 export default App
